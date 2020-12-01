@@ -118,31 +118,49 @@ namespace AdventOfCode
             return result;
         }
 
-        public static IEnumerable<IEnumerable<T>> GetCombinations<T>(this IEnumerable<T> source, int length)
+        // Enumerate all possible m-size combinations of [0, 1, ..., n-1] array
+        // in lexicographic order (first [0, 1, 2, ..., m-1]).
+        private static IEnumerable<int[]> CombinationsRosettaWoRecursion(int m, int n)
         {
-            var result = new List<List<T>>();
-
-            if (length == 1)
+            int[] result = new int[m];
+            Stack<int> stack = new Stack<int>(m);
+            stack.Push(0);
+            while (stack.Count > 0)
             {
-                return source.Select(x => new List<T>(1) { x });
-            }
-
-            for (var i = 0; i < source.Count(); i++)
-            {
-                var subList = source.Take(i).Concat(source.Skip(i + 1));
-
-                var subCombos = subList.GetCombinations(length - 1);
-
-                foreach (var c in subCombos)
+                int index = stack.Count - 1;
+                int value = stack.Pop();
+                while (value < n)
                 {
-                    var newCombo = new List<T>(length);
-                    newCombo.Add(source.ElementAt(i));
-                    newCombo.AddRange(c);
-                    result.Add(newCombo);
+                    result[index++] = value++;
+                    stack.Push(value);
+                    if (index != m) continue;
+                    yield return (int[])result.Clone(); // thanks to @xanatos
+                    //yield return result;
+                    break;
                 }
             }
+        }
 
-            return result;
+        public static IEnumerable<IEnumerable<T>> GetCombinations<T>(this IEnumerable<T> source, int length)
+        {
+          return source.ToArray<T>().GetCombinations(length);
+        }
+
+        public static IEnumerable<T[]> GetCombinations<T>(this T[] array, int m)
+        {
+            if (array.Length < m)
+                throw new ArgumentException("Array length can't be less than number of selected elements");
+            if (m < 1)
+                throw new ArgumentException("Number of selected elements can't be less than 1");
+            T[] result = new T[m];
+            foreach (int[] j in CombinationsRosettaWoRecursion(m, array.Length))
+            {
+                for (int i = 0; i < m; i++)
+                {
+                    result[i] = array[j[i]];
+                }
+                yield return result;
+            }
         }
 
         private static void Swap<T>(ref T a, ref T b)
@@ -1540,44 +1558,5 @@ namespace AdventOfCode
 
     internal static class Combinations
     {
-        // Enumerate all possible m-size combinations of [0, 1, ..., n-1] array
-        // in lexicographic order (first [0, 1, 2, ..., m-1]).
-        private static IEnumerable<int[]> CombinationsRosettaWoRecursion(int m, int n)
-        {
-            int[] result = new int[m];
-            Stack<int> stack = new Stack<int>(m);
-            stack.Push(0);
-            while (stack.Count > 0)
-            {
-                int index = stack.Count - 1;
-                int value = stack.Pop();
-                while (value < n)
-                {
-                    result[index++] = value++;
-                    stack.Push(value);
-                    if (index != m) continue;
-                    yield return (int[])result.Clone(); // thanks to @xanatos
-                    //yield return result;
-                    break;
-                }
-            }
-        }
-
-        public static IEnumerable<T[]> CombinationsRosettaWoRecursion<T>(this T[] array, int m)
-        {
-            if (array.Length < m)
-                throw new ArgumentException("Array length can't be less than number of selected elements");
-            if (m < 1)
-                throw new ArgumentException("Number of selected elements can't be less than 1");
-            T[] result = new T[m];
-            foreach (int[] j in CombinationsRosettaWoRecursion(m, array.Length))
-            {
-                for (int i = 0; i < m; i++)
-                {
-                    result[i] = array[j[i]];
-                }
-                yield return result;
-            }
-        }
     }
 }
