@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ContentModelStore">
+    <e p="C:\Users\fred\AppData\Local\JetBrains\Rider2020.3\extResources" t="IncludeRecursive" />
+    <e p="C:\Users\fred\AppData\Local\JetBrains\Rider2020.3\resharper-host\Local\Transient\Rider\v203\SolutionCaches\_AdventOfCode.-279046155.00" t="ExcludeRecursive" />
+    <e p="C:\Users\fred\Documents\GitHub\AdventOfCode2020\src" t="IncludeRecursive">
+      <e p=".gitignore" t="Include" />
+      <e p="AdventConfig.cs" t="Include" />
+      <e p="AdventOfCode.csproj" t="IncludeRecursive" />
+      <e p="AdventOfCode.sln" t="IncludeFlat" />
+      <e p="BaseDay.cs" t="Include" />
+      <e p="bin" t="ExcludeRecursive" />
+      <e p="DayAttribute.cs" t="Include" />
+      <e p="Days" t="Include">
+        <e p="Day01.cs" t="Include" />
+        <e p="Day02.cs" t="Include" />
+        <e p="Day03.cs" t="Include" />
+        <e p="Day04.cs" t="Include" />
+        <e p="Day05.cs" t="Include" />
+        <e p="Day06.cs" t="Include" />
+        <e p="Day07.cs" t="Include" />
+        <e p="Day08.cs" t="Include" />
+        <e p="Day09.cs" t="Include" />
+        <e p="Day10.cs" t="Include" />
+        <e p="Day11.cs" t="Include" />
+        <e p="Day12.cs" t="Include" />
+        <e p="Day13.cs" t="Include" />
+        <e p="Day14.cs" t="Include" />
+        <e p="Day15.cs" t="Include" />
+        <e p="Day16.cs" t="Include" />
+        <e p="Day17.cs" t="Include" />
+        <e p="Day18.cs" t="Include" />
+        <e p="Day19.cs" t="Include" />
+        <e p="Day20.cs" t="Include" />
+        <e p="Day21.cs" t="Include" />
+        <e p="Day22.cs" t="Include" />
+        <e p="Day23.cs" t="Include" />
+        <e p="Day24.cs" t="Include" />
+        <e p="Day25.cs" t="Include" />
+      </e>
+      <e p="ExtensionMethods.cs" t="Include" />
+      <e p="obj" t="ExcludeRecursive">
+        <e p="Debug" t="Include">
+          <e p="net5.0-windows" t="Include">
+            <e p="AdventOfCode.AssemblyInfo.cs" t="Include" />
+            <e p="GeneratedInternalTypeHelper.g.cs" t="Include" />
+            <e p="UI" t="Include">
+              <e p="App.g.cs" t="Include" />
+              <e p="MainWindow.g.cs" t="Include" />
+            </e>
+          </e>
+        </e>
+      </e>
+      <e p="packages" t="ExcludeRecursive" />
+      <e p="UI" t="Include">
+        <e p="App.xaml" t="Include" />
+        <e p="App.xaml.cs" t="Include" />
+        <e p="BaseViewModel.cs" t="Include" />
+        <e p="MainWindow.xaml" t="Include" />
+        <e p="MainWindow.xaml.cs" t="Include" />
+        <e p="MainWindowViewModel.cs" t="Include" />
+        <e p="RelayCommand.cs" t="Include" />
+        <e p="ScrollingTextBox.cs" t="Include" />
+      </e>
+    </e>
+  </component>
+</project>
