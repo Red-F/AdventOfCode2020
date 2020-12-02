@@ -397,6 +397,19 @@ namespace AdventOfCode
             return new string(Overlap<char>(a, b).ToArray());
         }
 
+        /// <summary>
+        /// Transform a string containing many lines, into an enumerable{T} using
+        /// the supplied parser
+        /// </summary>
+        /// <param name="input">string containing one or more lines</param>
+        /// <param name="lineParser">a parser that takes a string and returns a T</param>
+        /// <typeparam name="T">the result type</typeparam>
+        /// <returns></returns>
+        public static IEnumerable<T> ParseStrings<T>(this string input, Func<string, T> lineParser)
+        {
+            return input.Lines().Select(lineParser);
+        }
+
         public static IEnumerable<T> Overlap<T>(this IEnumerable<T> a, IEnumerable<T> b) where T : IEquatable<T>
         {
             var result = new List<T>();
