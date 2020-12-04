@@ -76,7 +76,7 @@ namespace AdventOfCode
 
         private static IEnumerable<T> GeneratePermutation<T>(T[] array, IReadOnlyList<int> sequence)
         {
-            var clone = (T[])array.Clone();
+            var clone = (T[]) array.Clone();
 
             for (int i = 0; i < clone.Length - 1; i++)
             {
@@ -94,8 +94,8 @@ namespace AdventOfCode
             {
                 var facto = factorials[sequence.Length - j];
 
-                sequence[j] = (int)(number / facto);
-                number = (int)(number % facto);
+                sequence[j] = (int) (number / facto);
+                number = (int) (number % facto);
             }
 
             return sequence;
@@ -134,7 +134,7 @@ namespace AdventOfCode
                     result[index++] = value++;
                     stack.Push(value);
                     if (index != m) continue;
-                    yield return (int[])result.Clone(); // thanks to @xanatos
+                    yield return (int[]) result.Clone(); // thanks to @xanatos
                     //yield return result;
                     break;
                 }
@@ -143,7 +143,7 @@ namespace AdventOfCode
 
         public static IEnumerable<IEnumerable<T>> GetCombinations<T>(this IEnumerable<T> source, int length)
         {
-          return source.ToArray<T>().GetCombinations(length);
+            return source.ToArray<T>().GetCombinations(length);
         }
 
         public static IEnumerable<T[]> GetCombinations<T>(this T[] array, int m)
@@ -159,6 +159,7 @@ namespace AdventOfCode
                 {
                     result[i] = array[j[i]];
                 }
+
                 yield return result;
             }
         }
@@ -281,12 +282,18 @@ namespace AdventOfCode
 
         public static IEnumerable<string> Lines(this string input)
         {
-            return input.Split(new string[] { Environment.NewLine, "\n" }, StringSplitOptions.RemoveEmptyEntries);
+            return input.Split(new string[] {Environment.NewLine, "\n"}, StringSplitOptions.RemoveEmptyEntries);
+        }
+
+        public static IEnumerable<string> LineGroups(this string input, string groupSeparator)
+        {
+            return input.Split(new string[] {groupSeparator}, StringSplitOptions.RemoveEmptyEntries);
         }
 
         public static IEnumerable<string> Words(this string input)
         {
-            return input.Split(new string[] { " ", "\t", Environment.NewLine, ",", "\n" }, StringSplitOptions.RemoveEmptyEntries);
+            return input.Split(new string[] {" ", "\t", Environment.NewLine, ",", "\n"},
+                StringSplitOptions.RemoveEmptyEntries);
         }
 
         public static IEnumerable<int> Integers(this string input)
@@ -445,7 +452,8 @@ namespace AdventOfCode
             third = list.Count() > 2 ? list.ElementAt(2) : default(T); // or throw
         }
 
-        public static void Deconstruct<T>(this IEnumerable<T> list, out T first, out T second, out T third, out T fourth)
+        public static void Deconstruct<T>(this IEnumerable<T> list, out T first, out T second, out T third,
+            out T fourth)
         {
             first = list.Count() > 0 ? list.ElementAt(0) : default(T); // or throw
             second = list.Count() > 1 ? list.ElementAt(1) : default(T); // or throw
@@ -453,7 +461,8 @@ namespace AdventOfCode
             fourth = list.Count() > 3 ? list.ElementAt(3) : default(T); // or throw
         }
 
-        public static void Deconstruct<T>(this IEnumerable<T> list, out T first, out T second, out T third, out T fourth, out T fifth)
+        public static void Deconstruct<T>(this IEnumerable<T> list, out T first, out T second, out T third,
+            out T fourth, out T fifth)
         {
             first = list.Count() > 0 ? list.ElementAt(0) : default(T); // or throw
             second = list.Count() > 1 ? list.ElementAt(1) : default(T); // or throw
@@ -488,7 +497,8 @@ namespace AdventOfCode
             fourth = list.Count > 3 ? list[3] : default(T); // or throw
         }
 
-        public static void Deconstruct<T>(this IList<T> list, out T first, out T second, out T third, out T fourth, out T fifth)
+        public static void Deconstruct<T>(this IList<T> list, out T first, out T second, out T third, out T fourth,
+            out T fifth)
         {
             first = list.Count > 0 ? list[0] : default(T); // or throw
             second = list.Count > 1 ? list[1] : default(T); // or throw
@@ -497,7 +507,8 @@ namespace AdventOfCode
             fifth = list.Count > 4 ? list[4] : default(T); // or throw
         }
 
-        public static void Deconstruct<T>(this IList<T> list, out T first, out T second, out T third, out T fourth, out T fifth, out T sixth)
+        public static void Deconstruct<T>(this IList<T> list, out T first, out T second, out T third, out T fourth,
+            out T fifth, out T sixth)
         {
             first = list.Count > 0 ? list[0] : default(T); // or throw
             second = list.Count > 1 ? list[1] : default(T); // or throw
@@ -507,7 +518,8 @@ namespace AdventOfCode
             sixth = list.Count > 5 ? list[5] : default(T); // or throw
         }
 
-        public static void Deconstruct<T>(this IList<T> list, out T first, out T second, out T third, out T fourth, out T fifth, out T sixth, out T seventh)
+        public static void Deconstruct<T>(this IList<T> list, out T first, out T second, out T third, out T fourth,
+            out T fifth, out T sixth, out T seventh)
         {
             first = list.Count > 0 ? list[0] : default(T); // or throw
             second = list.Count > 1 ? list[1] : default(T); // or throw
@@ -518,7 +530,8 @@ namespace AdventOfCode
             seventh = list.Count > 6 ? list[6] : default(T); // or throw
         }
 
-        public static void Deconstruct<T>(this IList<T> list, out T first, out T second, out T third, out T fourth, out T fifth, out T sixth, out T seventh, out T eigth)
+        public static void Deconstruct<T>(this IList<T> list, out T first, out T second, out T third, out T fourth,
+            out T fifth, out T sixth, out T seventh, out T eigth)
         {
             first = list.Count > 0 ? list[0] : default(T); // or throw
             second = list.Count > 1 ? list[1] : default(T); // or throw
@@ -552,6 +565,11 @@ namespace AdventOfCode
                 'W' => Compass.West,
                 _ => throw new ArgumentException($"Unrecognized character [{c}]")
             };
+        }
+
+        public static bool InRange(this char c, char minInclusive, char maxInclusive)
+        {
+            return Enumerable.Range(minInclusive, maxInclusive - minInclusive + 1).Contains(c);
         }
     }
 
@@ -1028,9 +1046,10 @@ namespace AdventOfCode
             return point.Move(direction, 1);
         }
 
-        public static double CalcDistance(this Point p, Point to) => Math.Sqrt(Math.Pow(p.X - to.X, 2) + Math.Pow(p.Y - to.Y, 2));
+        public static double CalcDistance(this Point p, Point to) =>
+            Math.Sqrt(Math.Pow(p.X - to.X, 2) + Math.Pow(p.Y - to.Y, 2));
 
-        public static double CalcSlope(this Point p, Point to) => (double)(p.Y - to.Y) / (double)(p.X - to.X);
+        public static double CalcSlope(this Point p, Point to) => (double) (p.Y - to.Y) / (double) (p.X - to.X);
     }
 
     public static class RectangleExtensions
@@ -1078,7 +1097,8 @@ namespace AdventOfCode
 
         public static string GetString(this char[,] grid)
         {
-            var sb = new StringBuilder(grid.GetLength(0) * grid.GetLength(1) + (Environment.NewLine.Length * grid.GetLength(1)));
+            var sb = new StringBuilder(grid.GetLength(0) * grid.GetLength(1) +
+                                       (Environment.NewLine.Length * grid.GetLength(1)));
 
             for (var y = 0; y <= grid.GetUpperBound(1); y++)
             {
@@ -1205,14 +1225,16 @@ namespace AdventOfCode
             }
         }
 
-        public static Dictionary<Point, int> FindShortestPaths(this char[,] grid, Func<char, bool> validMove, Point start)
+        public static Dictionary<Point, int> FindShortestPaths(this char[,] grid, Func<char, bool> validMove,
+            Point start)
         {
             var steps = 0;
             var result = new Dictionary<Point, int>();
 
             result.Add(start, 0);
 
-            var reachable = start.GetNeighbors(false).Where(p => validMove(grid[p.X, p.Y]) && !result.ContainsKey(p)).ToList();
+            var reachable = start.GetNeighbors(false).Where(p => validMove(grid[p.X, p.Y]) && !result.ContainsKey(p))
+                .ToList();
 
             while (reachable.Any())
             {
@@ -1222,7 +1244,8 @@ namespace AdventOfCode
 
                 var newReachable = new List<Point>();
                 reachable.ForEach(p => newReachable.AddRange(p.GetNeighbors(false).ToList()));
-                reachable = newReachable.Where(p => validMove(grid[p.X, p.Y]) && !result.ContainsKey(p)).Distinct().ToList();
+                reachable = newReachable.Where(p => validMove(grid[p.X, p.Y]) && !result.ContainsKey(p)).Distinct()
+                    .ToList();
             }
 
             return result;
@@ -1238,7 +1261,8 @@ namespace AdventOfCode
                 return 0;
             }
 
-            var reachable = start.GetNeighbors(false).Where(p => validMove(grid[p.X, p.Y]) && !seen.Contains(p)).ToList();
+            var reachable = start.GetNeighbors(false).Where(p => validMove(grid[p.X, p.Y]) && !seen.Contains(p))
+                .ToList();
 
             while (reachable.Any())
             {
@@ -1297,7 +1321,7 @@ namespace AdventOfCode
     {
         public static bool IsPrime(this int number)
         {
-            var sqrt = Math.Floor(Math.Sqrt((double)number));
+            var sqrt = Math.Floor(Math.Sqrt((double) number));
 
             for (var x = 2; x <= sqrt; x++)
             {
@@ -1308,6 +1332,11 @@ namespace AdventOfCode
             }
 
             return true;
+        }
+
+        public static bool InRange(this int number, int minInclusive, int maxInclusive)
+        {
+            return Enumerable.Range(minInclusive, maxInclusive - minInclusive + 1).Contains(number);
         }
     }
 
@@ -1325,12 +1354,13 @@ namespace AdventOfCode
         }
 
         public Point3D()
-        { }
+        {
+        }
 
         public Point3D(string coordinates) :
             this(long.Parse(coordinates.Words().ToList()[0]),
-                 long.Parse(coordinates.Words().ToList()[1]),
-                 long.Parse(coordinates.Words().ToList()[2]))
+                long.Parse(coordinates.Words().ToList()[1]),
+                long.Parse(coordinates.Words().ToList()[2]))
         {
         }
 
@@ -1420,9 +1450,9 @@ namespace AdventOfCode
 
         public Point4D(string coordinates) :
             this(long.Parse(coordinates.Words().ToList()[0]),
-                 long.Parse(coordinates.Words().ToList()[1]),
-                 long.Parse(coordinates.Words().ToList()[2]),
-                 long.Parse(coordinates.Words().ToList()[3]))
+                long.Parse(coordinates.Words().ToList()[1]),
+                long.Parse(coordinates.Words().ToList()[2]),
+                long.Parse(coordinates.Words().ToList()[3]))
         {
         }
 
@@ -1499,7 +1529,7 @@ namespace AdventOfCode
             var distance = 0;
 
             var visited = new HashSet<Tree<T>>();
-            var reachable = new List<Tree<T>>() { this };
+            var reachable = new List<Tree<T>>() {this};
 
             while (!reachable.Any(x => x == target))
             {
